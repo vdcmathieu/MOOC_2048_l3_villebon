@@ -6,47 +6,23 @@ console.log("Bonjour");
 document.addEventListener('keydown', function(event) {
     if(event.keyCode === 38) {
         console.log('haut');
-        moveUp(0);
-        fusionUp(0);
-        moveUp(1);
-        fusionUp(1);
-        moveUp(2);
-        fusionUp(2);
-        moveUp(3);
-        fusionUp(3);
+        up()
+        generateNew()
     }
     else if(event.keyCode === 40) {
         console.log('bas');
-        moveDown(0);
-        fusionDown(0);
-        moveDown(1);
-        fusionDown(1);
-        moveDown(2);
-        fusionDown(2);
-        moveDown(3);
-        fusionDown(3);
+        down()
+        generateNew()
     }
     else if(event.keyCode === 37) {
         console.log('gauche');
-        moveLeft(0);
-        fusionLeft(0);
-        moveLeft(1);
-        fusionLeft(1);
-        moveLeft(2);
-        fusionLeft(2);
-        moveLeft(3);
-        fusionLeft(3);
+        left()
+        generateNew()
     }
     else if(event.keyCode === 39) {
         console.log('droit');
-        moveRight(0);
-        fusionRight(0);
-        moveRight(1);
-        fusionRight(1);
-        moveRight(2);
-        fusionRight(2);
-        moveRight(3);
-        fusionRight(3);
+        right()
+        generateNew()
     }
     else if (event.keyCode === 84){
         init();
@@ -140,55 +116,67 @@ function isEmpty(i,j) {
 }
 
 function moveRight(i) {
+    var hasChanged = 0;
     var row = showRow(i);
     for (var k = 0; k <= 3; k++){
         for (var j = 0; j <= 3; j++){
             if ((row[j+1] === '') && (row[j] !== '')){
                 row[j+1] = row[j];
                 row[j] = '';
+                hasChanged = 1
             }
         }
     }
     setRow(i, row[0], row[1], row[2], row[3]);
+    return hasChanged
 }
 
 function moveLeft(i) {
+    var hasChanged = 0;
     var row = showRow(i);
     for (var k = 0; k <= 3; k++){
         for (var j = 0; j <= 3; j++){
             if ((row[j-1] === '') && (row[j] !== '')){
                 row[j-1] = row[j];
                 row[j] = '';
+                hasChanged = 1;
             }
         }
     }
     setRow(i, row[0], row[1], row[2], row[3]);
+    return hasChanged
 }
 
 function moveUp(j) {
+    var hasChanged = 0;
     var colm = showCol(j);
     for (var k = 0; k <= 3; k++){
         for (var i = 0; i <= 3; i++){
             if ((colm[i-1] === '') && (colm[i] !== '')){
                 colm[i-1] = colm[i];
                 colm[i] = '';
+                hasChanged = 1;
             }
         }
     }
     setColumn(j, colm[0], colm[1], colm[2], colm[3]);
+    return hasChanged
 }
 
 function moveDown(j) {
+    var hasChanged = 0;
     var colm = showCol(j);
     for (var k = 0; k <= 3; k++){
         for (var i = 0; i <= 3; i++){
             if ((colm[i+1] === '') && (colm[i] !== '')){
                 colm[i+1] = colm[i];
                 colm[i] = '';
+                hasChanged = 1;
             }
         }
     }
     setColumn(j, colm[0], colm[1], colm[2], colm[3]);
+    return hasChanged
 }
 
 function fusionRight(i) {
@@ -236,6 +224,97 @@ function fusionDown(j) {
             setValue(row,j,'')
             row[row] = ''
         }
+    }
+}
+
+function lineRight(i) {
+    var hasChanged = 0;
+    hasChanged = moveRight(i);
+    hasChanged = fusionRight(i);
+    hasChanged = moveRight(i);
+    return hasChanged
+}
+
+function lineLeft(i) {
+    moveLeft(i);
+    fusionLeft(i);
+    moveLeft(i);
+}
+
+function lineUp(j) {
+    moveUp(j);
+    fusionUp(j);
+    moveUp(j);
+}
+
+function lineDown(j) {
+    moveDown(j);
+    fusionDown(j);
+    moveDown(j);
+}
+
+function right () {
+    var hasChanged = 0;
+    for(i=0;i<=3;i++){
+        hasChanged = lineRight(i);
+    }
+    return hasChanged
+}
+
+function left () {
+    for(i=0;i<=3;i++){
+        lineLeft(i);
+    }
+}
+
+function up () {
+    for(j=0;j<=3;j++){
+        lineUp(j);
+    }
+}
+
+function down () {
+    for(j=0;j<=3;j++){
+        lineDown(j);
+    }
+}
+
+function hasEmpty() {
+    for (let i = 0; 0 <= 3; i++) {
+        for (let j = 0; 0 <= 3; j++) {
+            if (getValue(i,j) !== '') {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+function getEmpty() {
+    if (hasEmpty()) {
+        while (true) {
+            let i = getRandomInt(0,3);
+            let j = getRandomInt(0,3);
+            if (isEmpty(i,j)) {
+                return [i,j]
+            }
+        }
+    }
+    else {return false}
+}
+
+function end() {
+    alert('You loose !')
+}
+
+function generateNew() {
+    let emptyCoord = getEmpty();
+    if (emptyCoord !== false) {
+        let val = getRandom2or4(85);
+        setValue(emptyCoord[0],emptyCoord[1],val)
+    }
+    else {
+        end()
     }
 }
 

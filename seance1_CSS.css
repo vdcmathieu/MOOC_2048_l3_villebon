@@ -1,19 +1,22 @@
 body {
-    background-color: whitesmoke;
-    font-family: sans-serif;
+    background-color: #F3FFE2;
+    font-family: Helvetica, sans-serif;
     padding: 5px;
 }
 
 .game {
+    margin-top: 8%;
     text-align: center;
 }
 
 .subsectionTitle {
-    color: darkred;
+    color: #1695A3;
+    text-align: center;
+    font-size: 30px;
 }
 
 th, td {
-    border: 2px solid cornflowerblue;
+    border: 2px solid #EB7F00;
     padding: 10px;
     text-align: center;
     width: 50px;
@@ -21,17 +24,21 @@ th, td {
 }
 
 .table_c1 {
-    border: 2px solid cornflowerblue;
+    border: 2px solid #EB7F00;
     border-collapse: collapse;
     table-layout: fixed;
     margin: 20px auto;
 }
 
 p {
-    color: dimgrey;
+    color: #225378;
 }
 
 .scoreTitle {
-    color: dimgrey;
+    color: #1695A3;
     font-size: large;
+}
+
+.score {
+    font-size: xx-large;
 }
