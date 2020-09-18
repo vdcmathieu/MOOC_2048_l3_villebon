@@ -282,7 +282,7 @@ function down () {
 function hasEmpty() {
     for (let i = 0; 0 <= 3; i++) {
         for (let j = 0; 0 <= 3; j++) {
-            if (getValue(i,j) !== '') {
+            if (getValue(i,j) === '') {
                 return true
             }
         }
@@ -309,12 +309,12 @@ function end() {
 
 function generateNew() {
     let emptyCoord = getEmpty();
-    if (emptyCoord !== false) {
-        let val = getRandom2or4(85);
-        setValue(emptyCoord[0],emptyCoord[1],val)
+    if (emptyCoord === false) {
+        end()
     }
     else {
-        end()
+        let val = getRandom2or4(85);
+        setValue(emptyCoord[0],emptyCoord[1],val)
     }
 }
 
