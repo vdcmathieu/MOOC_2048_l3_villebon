@@ -1,0 +1,82 @@
+:root {
+    --color-x0y0: white;
+    --color-x0y1: white;
+    --color-x0y2: white;
+    --color-x0y3: white;
+    --color-x1y0: white;
+    --color-x1y1: white;
+    --color-x1y2: white;
+    --color-x1y3: white;
+    --color-x2y0: white;
+    --color-x2y1: white;
+    --color-x2y2: white;
+    --color-x2y3: white;
+    --color-x3y0: white;
+    --color-x3y1: white;
+    --color-x3y2: white;
+    --color-x3y3: white;
+}
+
+.x0y0 {
+    background-color: var(--color-x0y0);
+}
+
+.x0y1 {
+    background-color: var(--color-x0y1);
+}
+
+.xOy2 {
+    background-color: var(--color-x0y2);
+}
+
+.xOy3 {
+    background-color: var(--color-x0y3);
+}
+
+.x1y0 {
+    background-color: var(--color-x1y0);
+}
+
+.x1y1 {
+    background-color: var(--color-x1y1);
+}
+
+.x1y2 {
+    background-color: var(--color-x1y2);
+}
+
+.x1y3 {
+    background-color: var(--color-x1y3);
+}
+
+.x2y0 {
+    background-color: var(--color-x2y0);
+}
+
+.x2y1 {
+    background-color: var(--color-x2y1);
+}
+
+.x2y2 {
+    background-color: var(--color-x2y2);
+}
+
+.x2y3 {
+    background-color: var(--color-x2y3);
+}
+
+.x3y0 {
+    background-color: var(--color-x3y0);
+}
+
+.x3y1 {
+    background-color: var(--color-x3y1);
+}
+
+.x3y2 {
+    background-color: var(--color-x3y2);
+}
+
+.x3y3 {
+    background-color: var(--color-x3y3);
+}

@@ -1,5 +1,6 @@
 let score;
 let c0;
+let colorDict = ['antiquewhite','#7fffd4','#7bf5d6','#77ebd8','#74e0da','#70d6dd','#6cccdf','#68c2e1', '#64b8e3', '#61ade5'];
 
 console.log("Bonjour");
 
@@ -8,21 +9,25 @@ document.addEventListener('keydown', function(event) {
         console.log('haut');
         up()
         generateNew()
+        analyseColor()
     }
     else if(event.keyCode === 40) {
         console.log('bas');
         down()
         generateNew()
+        analyseColor()
     }
     else if(event.keyCode === 37) {
         console.log('gauche');
         left()
         generateNew()
+        analyseColor()
     }
     else if(event.keyCode === 39) {
         console.log('droit');
         right()
         generateNew()
+        analyseColor()
     }
     else if (event.keyCode === 84){
         init();
@@ -300,7 +305,7 @@ function getEmpty() {
             }
         }
     }
-    else {return false}
+    return false;
 }
 
 function end() {
@@ -309,12 +314,31 @@ function end() {
 
 function generateNew() {
     let emptyCoord = getEmpty();
-    if (emptyCoord === false) {
+    if (emptyCoord == false) {
         end()
     }
     else {
         let val = getRandom2or4(85);
         setValue(emptyCoord[0],emptyCoord[1],val)
+    }
+}
+
+function setColor(i,j,color) {
+    let root = document.documentElement;
+    root.style.setProperty('--color-x'+i+'y'+j, color)
+}
+
+function analyseColor() {
+    for (let i = 0; 0 <= 3; i++) {
+        for (let j = 0; 0 <= 3; j++) {
+            let value = getValue();
+            if (value === '') {
+                setColor(i,j,colorDict[0])
+            }
+            else {
+                setColor(i,j,colorDict[Math.log(Number(value))/Math.log(2)])
+            }
+        }
     }
 }
 
