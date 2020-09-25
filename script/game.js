@@ -5,43 +5,50 @@ let colorDict = ['antiquewhite','#7fffd4','#7bf5d6','#77ebd8','#74e0da','#70d6dd
 newGame();
 
 document.addEventListener('keydown', function(event) {
-    if(event.keyCode === 38) {
+    let key = event.key || event.keyCode;
+
+    if(key === 38 || key === 'ArrowUp' || key === 'z' || key === 90) {
         //up
         if (up()>0) {
             generateNew();
         }
         analyseColor();
         updateScore();
+        updateStorage();
         checkLost();
     }
-    else if(event.keyCode === 40) {
+    else if(key === 40 || key === 'ArrowDown' || key === 's' || key === 83) {
         //down
         if (down()>0) {
             generateNew()
         }
         analyseColor();
         updateScore();
+        updateStorage();
         checkLost();
     }
-    else if(event.keyCode === 37) {
+    else if(key === 37 || key === 'ArrowLeft' || key === 'q' || key === 81) {
         //left
         if (left()>0) {
             generateNew();
         }
         analyseColor();
         updateScore();
+        updateStorage();
         checkLost();
     }
-    else if(event.keyCode === 39) {
+    else if(key === 39 || key === 'ArrowRight' || key === 'd' || key === 68) {
         //right
         if (right()>0) {
             generateNew()
         }
         analyseColor();
         updateScore();
+        updateStorage();
         checkLost();
     }
-    else if (event.keyCode === 84){
+    else if (key === 84 || key === 't'){
+        // t
     }
 });
 
@@ -213,7 +220,7 @@ function fusionRight(i) {
 }
 
 function fusionLeft(i) {
-    let haschanged = 0;
+    let hasChanged = 0;
     let row = showRow(i);
     for (let col = 3; col >=0; col--) {
         if (row[col] === row[col-1] && row[col] !== '') {
@@ -222,10 +229,10 @@ function fusionLeft(i) {
             row[col+1] = 2*Number(getValue(i,col))
             setValue(i,col,'')
             row[col] = ''
-            haschanged += 1;
+            hasChanged += 1;
         }
     }
-    return haschanged;
+    return hasChanged;
 }
 
 function fusionUp(j) {
@@ -294,7 +301,7 @@ function lineDown(j) {
 
 function right () {
     let hasChanged = 0;
-    for(i=0;i<=3;i++){
+    for(let i=0;i<=3;i++){
         hasChanged += lineRight(i);
     }
     return hasChanged
@@ -302,7 +309,7 @@ function right () {
 
 function left () {
     let hasChanged = 0;
-    for(i=0;i<=3;i++){
+    for(let i=0;i<=3;i++){
         hasChanged += lineLeft(i);
     }
     return hasChanged;
@@ -310,7 +317,7 @@ function left () {
 
 function up () {
     let hasChanged = 0;
-    for(j=0;j<=3;j++){
+    for(let j=0;j<=3;j++){
         hasChanged += lineUp(j);
     }
     return hasChanged;
@@ -318,7 +325,7 @@ function up () {
 
 function down () {
     let hasChanged = 0;
-    for(j=0;j<=3;j++){
+    for(let j=0;j<=3;j++){
         hasChanged += lineDown(j);
     }
     return hasChanged;
@@ -419,7 +426,7 @@ function test1() {
 }
 
 function test2() {
-    document.getElementById("chalenge9").innerHTML = "Chalenge 9"
+    document.getElementById("challenge9").innerHTML = "Challenge 9"
 }
 
 function test3() {

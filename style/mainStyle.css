@@ -11,6 +11,10 @@ body {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 
 .subsectionTitle {
@@ -34,7 +38,7 @@ th, td {
     border-radius: 3px;
 }
 
-.table_c1 {
+#table {
     border: 5px solid #ddb39a;
     border-radius: 4px;
     border-collapse: separate;
@@ -47,12 +51,27 @@ p {
     color: #225378;
 }
 
-.scoreTitle {
+#scoreBoard {
+    position: center;
+    padding: 5px;
+}
+
+#scoreBox {
+    margin-left: 25%;
+    float: left;
+}
+
+#bestScoreBox {
+    float: right;
+    margin-right: 25%;
+}
+
+#scoreTitle,#bestScoreTitle {
     color: #1695A3;
     font-size: large;
 }
 
-.score {
+#score,#bestScore {
     font-size: xx-large;
 }
 
@@ -68,7 +87,7 @@ p {
 }
 
 .newGameButton {
-    margin-top: 20px;
+    margin-top: 10%;
 }
 
 .newGameButton:hover, .newGameButton-loose:hover {
