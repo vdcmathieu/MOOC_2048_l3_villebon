@@ -1,69 +1,28 @@
+// different function building the game (movement, etc.)
+
 let score;
 let c0;
 let colorDict = ['antiquewhite','#7fffd4','#7bf5d6','#77ebd8','#74e0da','#70d6dd','#6cccdf','#68c2e1', '#64b8e3', '#61ade5', '#5da3e7', '#5999ea', '#558fec', '#5185ee'];
 
-newGame();
-
-document.addEventListener('keydown', function(event) {
-    let key = event.key || event.keyCode;
-
-    if(key === 38 || key === 'ArrowUp' || key === 'z' || key === 90) {
-        //up
-        if (up()>0) {
-            generateNew();
-        }
-        analyseColor();
-        updateScore();
-        updateStorage();
-        checkLost();
-    }
-    else if(key === 40 || key === 'ArrowDown' || key === 's' || key === 83) {
-        //down
-        if (down()>0) {
-            generateNew()
-        }
-        analyseColor();
-        updateScore();
-        updateStorage();
-        checkLost();
-    }
-    else if(key === 37 || key === 'ArrowLeft' || key === 'q' || key === 81) {
-        //left
-        if (left()>0) {
-            generateNew();
-        }
-        analyseColor();
-        updateScore();
-        updateStorage();
-        checkLost();
-    }
-    else if(key === 39 || key === 'ArrowRight' || key === 'd' || key === 68) {
-        //right
-        if (right()>0) {
-            generateNew()
-        }
-        analyseColor();
-        updateScore();
-        updateStorage();
-        checkLost();
-    }
-    else if (key === 84 || key === 't'){
-        // t
-    }
-});
-
 // Function
 
-function getValue(i,j) {
+function afterMovement() { //does all necessary update after a movement
+    analyseColor();
+    updateScore();
+    updateStorage();
+    checkLost();
+}
+
+function getValue(i,j) { //get value of a table cell
     if (i < 4 && i >= 0 && j<4 && j>=0) {return document.getElementById('table').rows[i].cells[j].innerHTML}
     else {return false}
 }
 
-function setValue(i,j,val) {
+function setValue(i,j,val) { // set value of a table cell
     document.getElementById('table').rows[i].cells[j].innerHTML = val;
 }
 
-function showRow(i) {
+function showRow(i) { // get value of a table row
     let rowToReturn = [];
     for (let column of document.getElementById('table').rows[i].cells) {
         rowToReturn.push(column.innerHTML);
@@ -71,7 +30,7 @@ function showRow(i) {
     return rowToReturn;
 }
 
-function showCol(j) {
+function showCol(j) { // get value of a table column
     let columnToReturn = [];
     for (let row of document.getElementById('table').rows) {
         columnToReturn.push(row.cells[j].innerHTML);
@@ -79,21 +38,21 @@ function showCol(j) {
     return columnToReturn;
 }
 
-function setRow(i,a,b,c,d) {
+function setRow(i,a,b,c,d) { // set value of a row
     let value = [a,b,c,d]
     for (const j of Array(4).keys()) {
         setValue(i,j,value[j])
     }
 }
 
-function setColumn(j,a,b,c,d) {
+function setColumn(j,a,b,c,d) { // set value of a table column
     let value = [a,b,c,d]
     for (const i of Array(4).keys()) {
         setValue(i,j,value[i])
     }
 }
 
-function init(){
+function init(){ // initialize the game table
     let tab = [
         ['', '', '', ''],
         ['', '', '', ''],
@@ -108,19 +67,19 @@ function init(){
     }
 }
 
-function getRandomInt(min, max) {
+function getRandomInt(min, max) { // get random integer between two value
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getRandom2or4(percent) {
+function getRandom2or4(percent) { // get randomized 2 or 4 given a certain percentage
     let randomPercent = getRandomInt(0,100);
     if (randomPercent < percent) {return 2}
     else {return 4}
 }
 
-function startGame() {
+function startGame() { // start a game
     score = 0;
     let counter = 0;
     while (counter < 2) {
@@ -134,12 +93,12 @@ function startGame() {
     }
 }
 
-function isEmpty(i,j) {
+function isEmpty(i,j) { // check if cell is empty
     return getValue(i, j) === '';
 
 }
 
-function moveRight(i) {
+function moveRight(i) { // move all cells of a row to the right if possible
     let hasChanged = 0;
     let row = showRow(i);
     for (let k = 0; k <= 3; k++){
@@ -155,7 +114,7 @@ function moveRight(i) {
     return hasChanged
 }
 
-function moveLeft(i) {
+function moveLeft(i) { // move all cells of a row to the left if possible
     let hasChanged = 0;
     let row = showRow(i);
     for (let k = 0; k <= 3; k++){
@@ -171,7 +130,7 @@ function moveLeft(i) {
     return hasChanged
 }
 
-function moveUp(j) {
+function moveUp(j) { // move all cells of a row up if possible
     let hasChanged = 0;
     let colm = showCol(j);
     for (let k = 0; k <= 3; k++){
@@ -187,7 +146,7 @@ function moveUp(j) {
     return hasChanged
 }
 
-function moveDown(j) {
+function moveDown(j) { // move all cells of a row down if possible
     let hasChanged = 0;
     let colm = showCol(j);
     for (let k = 0; k <= 3; k++){
@@ -203,7 +162,7 @@ function moveDown(j) {
     return hasChanged
 }
 
-function fusionRight(i) {
+function fusionRight(i) { // fusion cells to the right if possible
     let hasChanged = 0;
     let row = showRow(i);
     for (let col = 0; col <=3; col++) {
@@ -219,7 +178,7 @@ function fusionRight(i) {
     return hasChanged;
 }
 
-function fusionLeft(i) {
+function fusionLeft(i) { // fusion cells to the left if possible
     let hasChanged = 0;
     let row = showRow(i);
     for (let col = 3; col >=0; col--) {
@@ -235,7 +194,7 @@ function fusionLeft(i) {
     return hasChanged;
 }
 
-function fusionUp(j) {
+function fusionUp(j) { // fusion cells up if possible
     let hasChanged = 0;
     let colm = showCol(j);
     for (let row = 3; row >=0; row--) {
@@ -251,7 +210,7 @@ function fusionUp(j) {
     return hasChanged;
 }
 
-function fusionDown(j) {
+function fusionDown(j) { // fusion cells down if possible
     let hasChanged = 0;
     let colm = showCol(j);
     for (let row = 0; row <=3; row++) {
@@ -331,7 +290,7 @@ function down () {
     return hasChanged;
 }
 
-function hasEmpty() {
+function hasEmpty() { // check if table has empty cells
     for (let i of Array(4).keys()) {
         for (let j of Array(4).keys()) {
             if (getValue(i,j) === '') {
@@ -342,7 +301,7 @@ function hasEmpty() {
     return false
 }
 
-function getEmpty() {
+function getEmpty() { // get coord of empty a table empty cell
     if (hasEmpty()) {
         while (true) {
             let i = getRandomInt(0,3);
@@ -355,11 +314,11 @@ function getEmpty() {
     return false;
 }
 
-function end() {
+function end() { // end the game
     overlayOn();
 }
 
-function generateNew() {
+function generateNew() { //generate new number in a random empty cells
     if (hasEmpty()) {
         let emptyCoord = getEmpty();
         let val = getRandom2or4(85);
@@ -367,7 +326,7 @@ function generateNew() {
     }
 }
 
-function checkPossibilities() {
+function checkPossibilities() { // check if the player still has possibilities to play
     for (let i of Array(4).keys()) {
         for (let j of Array(4).keys()) {
             if(getValue(i,j) === getValue(i,j+1) || getValue(i,j) === getValue(i+1,j) || getValue(i,j) === getValue(i,j-1) || getValue(i,j) === getValue(i-1,j) || hasEmpty()){return true}
@@ -376,16 +335,16 @@ function checkPossibilities() {
     return false;
 }
 
-function checkLost () {
+function checkLost () { // check if the player has lost
     if (checkPossibilities() === false) {end()}
 }
 
-function setColor(i,j,color) {
+function setColor(i,j,color) { // set the color of a cell
     let root = document.documentElement;
     root.style.setProperty('--color-x'+i+'y'+j, color)
 }
 
-function analyseColor() {
+function analyseColor() { // check value of cell to give the equivalent color
     for (let i of Array(4).keys()) {
         for (let j of Array(4).keys()) {
             let value = getValue(i,j);
@@ -399,11 +358,12 @@ function analyseColor() {
     }
 }
 
-function updateScore() {
+function updateScore() { // update score and best score
     document.getElementById('score').innerHTML = score;
+    document.getElementById('bestScore').innerHTML = getBestScore()
 }
 
-function newGame() {
+function newGame() { // setup for new game
     init();
     startGame();
     analyseColor();
@@ -411,90 +371,10 @@ function newGame() {
     overlayOff();
 }
 
-function overlayOn() {
+function overlayOn() { // activate loose overlay
     document.getElementById("overlay").style.display = "block";
 }
 
-function overlayOff() {
+function overlayOff() { // deactivate loose overlay
     document.getElementById("overlay").style.display = "none";
-}
-
-// Test Function
-
-function test1() {
-    console.log('test 1');
-}
-
-function test2() {
-    document.getElementById("challenge9").innerHTML = "Challenge 9"
-}
-
-function test3() {
-    score = Number(document.getElementById("score").innerHTML);
-    document.getElementById("score").innerHTML = score + 1
-}
-
-function test4() {
-    c0 = document.getElementById('table').rows[0].cells[0].innerHTML;
-    console.log("value of (0,0) cell: "+c0);
-}
-
-function test5() {
-    document.getElementById('table').rows[0].cells[0].innerHTML = "#";
-}
-
-function test6() {
-    console.log(getValue(1,1));
-    console.log(getValue(2,2));
-    console.log(getValue(3,3));
-}
-
-function test7() {
-    setValue(0,0,'P')
-    setValue(1,1,"Q")
-    setValue(2,2,'R')
-    setValue(3,3,"S")
-}
-
-function test8() {
-    console.log('Row')
-    console.log(showRow(0));
-    console.log(showRow(1));
-    console.log(showRow(2));
-    console.log(showRow(3));
-}
-
-function test9() {
-    console.log('Column');
-    console.log(showCol(0));
-    console.log(showCol(1));
-    console.log(showCol(2));
-    console.log(showCol(3));
-}
-
-function test10() {
-    setRow(0,1,2,3,4)
-    setRow(1,5,6,7,8)
-    setRow(2,9,10,11,12)
-    setRow(3,13,14,15,16)
-}
-
-function test11() {
-    init()
-}
-
-function test12() {
-    let i = getRandomInt(0,3)
-    let j = getRandomInt(0,3)
-    setValue(i,j,'@')
-}
-
-function test13(){
-    for(i=0;i<=3;i++){
-        for(j=0;j<=3;j++){
-            if(isEmpty (i,j)){
-                console.log("la case ["+i+"]["+j+"] est vide");
-            }
-        }
-    }
 }

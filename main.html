@@ -19,34 +19,34 @@
 
     <body>
 
-        <div class="game">
+        <div id="game">
 
-            <div class="subsectionTitle"><h1 id="challenge9">2048</h1></div>
+            <div id="subsectionTitle"><h1 id="challenge9">2048</h1></div>
 
             <table id="table">
-                <tr>
-                    <td class="x0y0"></td>
-                    <td class="x0y1"></td>
-                    <td class="x0y2"></td>
-                    <td class="x0y3"></td>
+                <tr id="x0">
+                    <td id="x0y0"></td>
+                    <td id="x0y1"></td>
+                    <td id="x0y2"></td>
+                    <td id="x0y3"></td>
                 </tr>
-                <tr>
-                    <td class="x1y0"></td>
-                    <td class="x1y1"></td>
-                    <td class="x1y2"></td>
-                    <td class="x1y3"></td>
+                <tr id="x1">
+                    <td id="x1y0"></td>
+                    <td id="x1y1"></td>
+                    <td id="x1y2"></td>
+                    <td id="x1y3"></td>
                 </tr>
-                <tr>
-                    <td class="x2y0"></td>
-                    <td class="x2y1"></td>
-                    <td class="x2y2"></td>
-                    <td class="x2y3"></td>
+                <tr id="x2">
+                    <td id="x2y0"></td>
+                    <td id="x2y1"></td>
+                    <td id="x2y2"></td>
+                    <td id="x2y3"></td>
                 </tr>
-                <tr>
-                    <td class="x3y0"></td>
-                    <td class="x3y1"></td>
-                    <td class="x3y2"></td>
-                    <td class="x3y3"></td>
+                <tr id="x3">
+                    <td id="x3y0"></td>
+                    <td id="x3y1"></td>
+                    <td id="x3y2"></td>
+                    <td id="x3y3"></td>
                 </tr>
             </table>
 
@@ -61,16 +61,18 @@
                 </div>
             </div>
 
-            <button class="newGameButton" onclick="newGame()">New Game</button>
+            <button id="newGameButton" onclick="newGame()">New Game</button>
 
         </div>
 
         <div id="overlay">
-            <div id="overlay-text">You loose !</div>
-            <button class="newGameButton-loose" onclick="newGame()">New game</button>
+            <div id="overlay-text">You loose!</div>
+            <button id="newGameButton-loose" onclick="newGame()">New game</button>
         </div>
 
-        <script src="script/game.js"></script>
+        <script src="script/gameFunction.js"></script>
         <script src="script/localStorageManager.js"></script>
+        <script src="script/gameManager.js"></script>
+        <script src="script/testForCourse.js"></script>
     </body>
 </html>

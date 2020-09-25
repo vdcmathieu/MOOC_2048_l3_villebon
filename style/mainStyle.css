@@ -4,7 +4,7 @@ body {
     margin: 10px;
 }
 
-.game {
+#game {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -17,7 +17,7 @@ body {
     user-select: none; /* Standard */
 }
 
-.subsectionTitle {
+#subsectionTitle {
     color: #1695A3;
     text-align: center;
     font-size: 30px;
@@ -75,7 +75,7 @@ p {
     font-size: xx-large;
 }
 
-.newGameButton, .newGameButton-loose {
+#newGameButton, #newGameButton-loose {
     background-color: #72ac74; /* Green */
     border: none;
     color: white;
@@ -86,11 +86,11 @@ p {
     font-size: 16px;
 }
 
-.newGameButton {
+#newGameButton {
     margin-top: 10%;
 }
 
-.newGameButton:hover, .newGameButton-loose:hover {
+#newGameButton:hover, #newGameButton-loose:hover {
     background-color: #4CAF50;
     cursor: pointer;
 }
@@ -118,7 +118,7 @@ p {
     -ms-transform: translate(-50%, -50%);
 }
 
-.newGameButton-loose {
+#newGameButton-loose {
     position: absolute;
     top: 60%;
     left: 50%;
