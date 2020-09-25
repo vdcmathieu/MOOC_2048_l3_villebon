@@ -1,20 +1,20 @@
 :root {
-    --color-x0y0: white;
-    --color-x0y1: white;
-    --color-x0y2: white;
-    --color-x0y3: white;
-    --color-x1y0: white;
-    --color-x1y1: white;
-    --color-x1y2: white;
-    --color-x1y3: white;
-    --color-x2y0: white;
-    --color-x2y1: white;
-    --color-x2y2: white;
-    --color-x2y3: white;
-    --color-x3y0: white;
-    --color-x3y1: white;
-    --color-x3y2: white;
-    --color-x3y3: white;
+    --color-x0y0: antiquewhite;
+    --color-x0y1: antiquewhite;
+    --color-x0y2: antiquewhite;
+    --color-x0y3: antiquewhite;
+    --color-x1y0: antiquewhite;
+    --color-x1y1: antiquewhite;
+    --color-x1y2: antiquewhite;
+    --color-x1y3: antiquewhite;
+    --color-x2y0: antiquewhite;
+    --color-x2y1: antiquewhite;
+    --color-x2y2: antiquewhite;
+    --color-x2y3: antiquewhite;
+    --color-x3y0: antiquewhite;
+    --color-x3y1: antiquewhite;
+    --color-x3y2: antiquewhite;
+    --color-x3y3: antiquewhite;
 }
 
 .x0y0 {
@@ -25,11 +25,11 @@
     background-color: var(--color-x0y1);
 }
 
-.xOy2 {
+.x0y2 {
     background-color: var(--color-x0y2);
 }
 
-.xOy3 {
+.x0y3 {
     background-color: var(--color-x0y3);
 }
 
